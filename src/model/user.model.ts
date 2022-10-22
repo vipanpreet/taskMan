@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { ObjectId, Types } from "mongoose";
 
 export interface UserDocument extends mongoose.Document {
   email: string;
@@ -7,6 +7,7 @@ export interface UserDocument extends mongoose.Document {
   password: string;
   token: string;
   role: string;
+  team: Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -33,6 +34,10 @@ const UserSchema = new mongoose.Schema(
       default: "admin",
       enum: ["admin", "employee", "manager"],
       index: true,
+    },
+    team: {
+      type: Types.ObjectId,
+      ref: "Team",
     },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
