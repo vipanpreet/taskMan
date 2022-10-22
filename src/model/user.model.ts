@@ -7,7 +7,7 @@ export interface UserDocument extends mongoose.Document {
   password: string;
   token: string;
   role: string;
-  team: Types.ObjectId;
+  teams: Types.ObjectId[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -35,10 +35,12 @@ const UserSchema = new mongoose.Schema(
       enum: ["admin", "employee", "manager"],
       index: true,
     },
-    team: {
-      type: Types.ObjectId,
-      ref: "Team",
-    },
+    teams: [
+      {
+        type: Types.ObjectId,
+        ref: "Team",
+      },
+    ],
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
   },

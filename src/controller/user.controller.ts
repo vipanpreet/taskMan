@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { omit } from "lodash";
 import { createUser, loginSession } from "../service/user.service";
 import log from "../logger";
 
