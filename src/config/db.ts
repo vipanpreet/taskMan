@@ -2,9 +2,10 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 import log from "../logger";
+import { database } from "./keys";
 
 const connect = () => {
-  const uri = process.env.MONGO_URI as string;
+  const uri = database.url as string;
 
   return mongoose
     .connect(uri)
